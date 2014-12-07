@@ -220,7 +220,8 @@ if (!empty($images)) {
 	
 	// Don't add js in category view
 	//if ($view == 'article' || $view == 'featured' || ($view == 'category' && $layout == 'blog')) {
-	if ($view == 'article' || $view == 'featured' || $view == 'item' ||($view == 'category' && $layout == 'blog')) {
+	//if ($view == 'article' || $view == 'featured' || $view == 'item' ||($view == 'category' && $layout == 'blog')) {
+	if ($view == 'article' || $view == 'featured' || $view == 'item' || $view == 'itemlist' || $view == 'topics' || $view == 'topic' || $view == 'statistics' || $view == 'user' || $view == 'foxcontact' || $view == 'category' || ($view == 'category' && $layout == 'blog')) {
 		//$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jquery/jquery-1.6.4.min.js');
 		JHtml::_('jquery.framework', false);
 		$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/fadeslideshow/fadeslideshow.js');
