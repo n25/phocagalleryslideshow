@@ -71,6 +71,7 @@ class plgContentPhocaGallerySlideshow extends JPlugin
 			$desc					= 'peekaboo';
 			$random					= 0;
 			$pause					= 2500;
+			$limit					= 5;
 			
 			// Get plugin parameters
 			$phocagallery	= $matches[0][$j][0];
@@ -96,6 +97,7 @@ class plgContentPhocaGallerySlideshow extends JPlugin
 				else if($values[0]=='pause')			{$pause					= $values[1];}
 				else if($values[0]=='pgslink')			{$tmpl['pgslink']		= $values[1];}
 				else if($values[0]=='imageordering')	{$tmpl['imageordering']	= $values[1];}
+				else if($values[0]=='limit')            {$limit                 = $values[1];}
 			}
 			
 			if ($id > 0) {
@@ -116,7 +118,8 @@ class plgContentPhocaGallerySlideshow extends JPlugin
 						   . ' AND cc.approved = 1'
 						   . ' AND a.approved = 1'
 						   . ' AND a.catid = ' . (int)$id
-						   . $imageOrdering;
+					        // . $imageOrdering;
+						   . $imageOrdering  . ' LIMIT ' . $limit;
 				$db->setQuery($query);
 				$images = $db->loadObjectList();
 			
@@ -221,7 +224,7 @@ if (!empty($images)) {
 	// Don't add js in category view
 	//if ($view == 'article' || $view == 'featured' || ($view == 'category' && $layout == 'blog')) {
 	//if ($view == 'article' || $view == 'featured' || $view == 'item' ||($view == 'category' && $layout == 'blog')) {
-	if ($view == 'article' || $view == 'featured' || $view == 'item' || $view == 'itemlist' || $view == 'latest' || $view == 'topics' || $view == 'topic' || $view == 'statistics' || $view == 'user' || $view == 'foxcontact' || $view == 'category' || ($view == 'category' && $layout == 'blog')) {
+	if ($view == 'article' || $view == 'featured' || $view == 'item' || $view == 'itemlist' || $view == 'latest' || $view == 'topics' || $view == 'topic' || $view == 'statistics' || $view == 'user' || $view == 'reset' || $view == 'remind' || $view == 'foxcontact' || $view == 'category' || ($view == 'category' && $layout == 'blog')) {
 		//$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jquery/jquery-1.6.4.min.js');
 		JHtml::_('jquery.framework', false);
 		$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/fadeslideshow/fadeslideshow.js');
